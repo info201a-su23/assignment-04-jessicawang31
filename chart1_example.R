@@ -1,6 +1,8 @@
 library(ggplot2)
 library(dplyr)
 
+data <- read.csv("https://raw.githubusercontent.com/melaniewalsh/Neat-Datasets/main/us-prison-pop.csv")
+
 current_year <- max(data$year)
 my_county <- "King County"
 my_state <- "WA"

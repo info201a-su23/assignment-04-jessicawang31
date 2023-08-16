@@ -7,13 +7,7 @@ output: html_document
 
 An introduction of the problem domain and a description of the variable(s) you are choosing to analyze (and why!)
 
-```{r}
-data <- read.csv("https://raw.githubusercontent.com/melaniewalsh/Neat-Datasets/main/us-prison-pop.csv")
-variables <- colnames(data)
-print(variables)
-```
-
-The problem domain of incarceration in America is a significant issue with a great number of its population behind bars.I'll be analyzing the total population of people in America incarcerated, comparing the differences between states/counties and how a person's demographic such as race may play a role as a significant amount of the people behind bars are part of the Black community. I'm analyzing these variables to gain insights to potential trends that may be occurring and see if there's correlation between variables such as race. 
+The problem domain of incarceration in America is a significant issue with a great number of its population behind bars. I'll be analyzing the total population of people in America incarcerated, comparing the differences between states/counties and how a person's demographic such as race may play a role as a significant amount of the people behind bars are part of the Black community. I'm analyzing these variables, such as total_prison_pop, total_black_prison_pop, male_prison_pop, female_prison_pop, black_male_prison_pop, black_female_prison_pop to gain insights to potential trends that may be occurring and see if there's correlation between variables such as race. 
 
 ### Summary Information
 
@@ -23,87 +17,31 @@ These will likely be calculated using your DPLYR skills, answering questions suc
 
 My variable: black_prison_pop
 
-- What is the average for my variable for each county? 
+- Which county has the greatest average for my variable? 
 
-```{r}
-library(dplyr)
-black_average_population <- data %>%
-  group_by(county_name) %>%
-  summarize(total_black_average_population = mean(black_prison_pop, na.rm = TRUE))
-print(black_average_population)
-```
+New York County is the greatest county with an average of 19141.
 
 - Where is my variable the highest?
 
-```{r}
-library(dplyr)
-max_value <- max(data$black_prison_pop, na.rm = TRUE)
-highest_incarceration_counties <- data %>%
-  filter(black_prison_pop == max_value)
-print(highest_incarceration_counties)
-```
+It was the highest in New York County, NY.
 
 - Where is my variable the lowest?
 
-```{r}
-library(dplyr)
-lowest_incarceration_county <- data %>%
-  arrange(black_prison_pop) %>%
-  head(1)
-print(lowest_incarceration_county)
-```
+It was the lowest in Cleburne County, Al.
 
 - How much has my variable change for the male population over the last N = 10 years in King County, WA?
 
-```{r}
-library(dplyr)
-current_year <- max(data$year)
-my_county <- "King County"
-my_state <- "WA"
-last_ten_years <- current_year - 10
-
-filtered_data <- data %>% 
-  filter(state == my_state & county_name == my_county) %>% 
-  filter(year >= last_ten_years & year <= current_year)
-
-non_na_values <- sum(!is.na(filtered_data$black_male_prison_pop))
-
-if (non_na_values > 0) {
-  max_value <- max(filtered_data$black_male_prison_pop, na.rm = TRUE)
-  min_value <- min(filtered_data$black_male_prison_pop, na.rm = TRUE)
-  change_over_years <- max_value - min_value
-  print(change_over_years)
-} 
-```
+A difference of 184.
 
 - How much has my variable change for the female population over the last N = 10 years in King County, WA?
 
-```{r}
-library(dplyr)
-current_year <- max(data$year)
-my_county <- "King County"
-my_state <- "WA"
-last_ten_years <- current_year - 10
-
-filtered_data <- data %>% 
-  filter(state == my_state & county_name == my_county) %>% 
-  filter(year >= last_ten_years & year <= current_year)
-
-non_na_values <- sum(!is.na(filtered_data$black_female_prison_pop))
-
-if (non_na_values > 0) {
-  max_value <- max(filtered_data$black_female_prison_pop, na.rm = TRUE)
-  min_value <- min(filtered_data$black_female_prison_pop, na.rm = TRUE)
-  change_over_years <- max_value - min_value
-  print(change_over_years)
-} 
-```
+A difference of 36.
 
 Feel free to calculate and report values that you find relevant. Again, remember that the purpose is to think about how these measure of incarceration vary by race.
 
 Summary:
 
-I found 5 values computed from the dataset I chose, analyzing the "black_prison_pop" column. The first value I calculated was the average number of black people in prison in each county, spanning from the year 1970-2018. The second value I calculated was what county and what year the highest number of black people in prison was which was New York County in 1998 with a value of 24818. The third value I calculated was what county and what year the lowest number of black people in prison was, this one had multiple counties with the value of 0, however, there are way too many to print so my code prints the one at the top of the list of counties with a value of 0 instead. My fourth and fifth values I calculated were more in depth as I chose King County, WA to analyze. One value calculated was the how the male black prison population changed in the last 10 years and how the female black prison population changed in the last 10 years, yielding a value of 184 for males adn 36 for females.
+I found 5 values computed from the dataset I chose, analyzing the "black_prison_pop" column. The first value I calculated was the county with the greatest average number of black people in prison, spanning from the year 1970-2018, yielding New York County and an average of 19141. I chose to do the max county as if I did the average for each county, there would be over 1000 values. The second value I calculated was what county and what year the highest number of black people in prison was which was New York County in 1998 with a value of 24818. The third value I calculated was what county and what year the lowest number of black people in prison was, this one had multiple counties with the value of 0, however, there are way too many to print so my code prints the one at the top of the list of counties with a value of 0 instead. My fourth and fifth values I calculated were more in depth as I chose King County, WA to analyze. One value calculated was the how the male black prison population changed in the last 10 years and how the female black prison population changed in the last 10 years, yielding a value of 184 for males and 36 for females.
 
 ### The Dataset
 
@@ -121,18 +59,9 @@ The data was collected to expose patterns of inequality regarding incarceration 
 
 How many observations (rows) are in your data?  
 
-```{r}
-rows <- nrow(data)
-print(rows)
-```
 There are 153811 rows of observations in my data.
 
 How many features (columns) are in the data?  
-
-```{r}
-cols <- ncol(data)
-print(cols)
-```
 
 There are 36 features in my data.
 
@@ -161,7 +90,7 @@ When we say "clear" or "human readable" titles and labels, that means that you s
 
 Here's an example of how to run an R script inside an RMarkdown file:
 
-```{r, echo = FALSE, code = readLines("chart1_example.R")}
+```{r, echo = FALSE, message = FALSE, code = readLines("chart1_example.R")}
 
 ```
 

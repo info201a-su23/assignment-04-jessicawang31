@@ -2,6 +2,8 @@ library(ggplot2)
 library(dplyr)
 library(tidyr)
 
+data <- read.csv("https://raw.githubusercontent.com/melaniewalsh/Neat-Datasets/main/us-prison-pop.csv")
+
 filtered_data <- data %>% 
   filter(year == min(data$year, na.rm = TRUE) | year == max(data$year, na.rm = TRUE)) %>%
   replace_na(list(total_prison_pop = 0, black_prison_pop = 0))
