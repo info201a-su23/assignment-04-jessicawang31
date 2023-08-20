@@ -3,6 +3,12 @@ title: "A3: Incarceration"
 output: html_document
 ---
 
+```{r setup, include = FALSE}
+source("summary.R")
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
 ### Introduction
 
 An introduction of the problem domain and a description of the variable(s) you are choosing to analyze (and why!)
@@ -13,35 +19,35 @@ The problem domain of incarceration in America is a significant issue with a gre
 
 Write a summary paragraph of findings that includes the 5 values calculated from your summary information R script
 
-These will likely be calculated using your DPLYR skills, answering questions such as: 
+These will likely be calculated using your DPLYR skills, answering questions such as:
 
 My variable: black_prison_pop
 
 - Which county has the greatest average for my variable? 
 
-New York County is the greatest county with an average of 19141.
+The greatest county and its average is `r max_black_average_population_row`.
 
 - Where is my variable the highest?
 
-It was the highest in New York County, NY.
+It was the highest in `r highest_incarceration_county_name`.
 
 - Where is my variable the lowest?
 
-It was the lowest in Cleburne County, Al.
+It was the lowest in `r lowest_incarceration_county_name`.
 
 - How much has my variable change for the male population over the last N = 10 years in King County, WA?
 
-A difference of 184.
+A difference of `r male_change_over_years`.
 
 - How much has my variable change for the female population over the last N = 10 years in King County, WA?
 
-A difference of 36.
+A difference of `r female_change_over_years`.
 
 Feel free to calculate and report values that you find relevant. Again, remember that the purpose is to think about how these measure of incarceration vary by race.
 
 Summary:
 
-I found 5 values computed from the dataset I chose, analyzing the "black_prison_pop" column. The first value I calculated was the county with the greatest average number of black people in prison, spanning from the year 1970-2018, yielding New York County and an average of 19141. The name of this variable is max_black_average_population_row. I chose to do the max county as if I did the average for each county, there would be over 1000 values. The second value I calculated was what county and what year the highest number of black people in prison was which was New York County in 1998 with a value of 24818. The variable name of this value is highest_incarceration_counties. The third value I calculated was what county and what year the lowest number of black people in prison was, this one had multiple counties with the value of 0, however, there are way too many to print so my code prints the one at the top of the list of counties with a value of 0 instead. The variable name of this is lowest_incarceration_county. My fourth and fifth values I calculated were more in depth as I chose King County, WA to analyze. One value calculated was the how the male black prison population changed in the last 10 years and how the female black prison population changed in the last 10 years, yielding a value of 184 for males and 36 for females. The variable name for both of these was change_over_years but one just filtered for the men and the other the female.
+I found 5 values computed from the dataset I chose, analyzing the "black_prison_pop" column. The first value I calculated was the county with the greatest average number of black people in prison, spanning from the year 1970-2018, yielding `r max_black_average_population_row`. The name of this variable is max_black_average_population_row. I chose to do the max county as if I did the average for each county, there would be over 1000 values. The second value I calculated was what county and what year the highest number of black people in prison was which was `r highest_incarceration_county_name`. The variable name of this value is highest_incarceration_county_name The third value I calculated was what county and what year the lowest number of black people in prison was, this one had multiple counties with the value of 0, however, there are way too many to print so my code prints the one at the top of the list of counties with a value of 0 instead. The variable name of this is lowest_incarceration_county_name, yielding `r lowest_incarceration_county_name`. My fourth and fifth values I calculated were more in depth as I chose King County, WA to analyze. One value calculated was the how the male black prison population changed in the last 10 years and how the female black prison population changed in the last 10 years, yielding a value of `r male_change_over_years` for males and `r female_change_over_years` for females. The variable name for both of these was male_change_over_years and female_change_over_years respectively.
 
 ### The Dataset
 
@@ -83,7 +89,7 @@ The first chart that you will create and include will show the trend over time o
 - Show more than one, but fewer than ~10 trends
   - This may mean showing the same measure for different locations or different racial groups. Think carefully about a meaningful comparison of locations (e.g., the top 10 counties in a state, top 10 states, etc.)
 - You must have clear x and y axis labels
-- The chart needs a clear title 
+- The chart needs a clear title
 - You need a legend for your different line colors and a clear legend title
 
 When we say "clear" or "human readable" titles and labels, that means that you should not just display the variable name.

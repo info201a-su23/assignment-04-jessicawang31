@@ -20,16 +20,18 @@ print(max_black_average_population_row)
 # Where is my variable the highest?
   
 max_value <- max(data$black_prison_pop, na.rm = TRUE)
-highest_incarceration_counties <- data %>%
+highest_incarceration_county <- data %>%
   filter(black_prison_pop == max_value)
-print(highest_incarceration_counties)
+highest_incarceration_county_name = highest_incarceration_county$county_name
+print(highest_incarceration_county_name)
 
 # Where is my variable the lowest?
 
 lowest_incarceration_county <- data %>%
   arrange(black_prison_pop) %>%
   head(1)
-print(lowest_incarceration_county)
+lowest_incarceration_county_name = lowest_incarceration_county$county_name
+print(lowest_incarceration_county_name)
 
 # How much has my variable change for the male population over the last N = 10 years in King County, WA?
 
@@ -47,8 +49,8 @@ non_na_values <- sum(!is.na(filtered_data$black_male_prison_pop))
 if (non_na_values > 0) {
   max_value <- max(filtered_data$black_male_prison_pop, na.rm = TRUE)
   min_value <- min(filtered_data$black_male_prison_pop, na.rm = TRUE)
-  change_over_years <- max_value - min_value
-  print(change_over_years)
+  male_change_over_years <- max_value - min_value
+  print(male_change_over_years)
 }
 
 # How much has my variable change for the female population over the last N = 10 years in King County, WA?
@@ -67,6 +69,6 @@ non_na_values <- sum(!is.na(filtered_data$black_female_prison_pop))
 if (non_na_values > 0) {
   max_value <- max(filtered_data$black_female_prison_pop, na.rm = TRUE)
   min_value <- min(filtered_data$black_female_prison_pop, na.rm = TRUE)
-  change_over_years <- max_value - min_value
-  print(change_over_years)
+  female_change_over_years <- max_value - min_value
+  print(female_change_over_years)
 }
